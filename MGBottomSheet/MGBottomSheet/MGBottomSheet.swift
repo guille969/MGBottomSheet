@@ -79,6 +79,8 @@ public class MGBottomSheet: UIViewController  {
         }
         else {
             self.actionsPanelTitleLabel.text = self.titlePanel
+            self.actionsPanelTitleLabel.font = self.appearance?.textFont;
+            self.actionsPanelTitleLabel.textColor = self.appearance?.textColor;
         }
     }
     
