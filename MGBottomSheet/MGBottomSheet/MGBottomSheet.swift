@@ -131,10 +131,10 @@ public class MGBottomSheet: UIViewController  {
         
         if UI_USER_INTERFACE_IDIOM() == .pad {
             let numberLines:Float = ceilf(Float(numberActions) / 2)
-            actionsPanelHeight = self.panelTitleViewHeightConstraint.constant + (CGFloat(kActionsViewHeigth) * CGFloat(numberLines))
+            actionsPanelHeight = self.panelTitleViewHeightConstraint.constant + (CGFloat(kActionsViewHeigth) * CGFloat(numberLines)) + 8
         }
         else {
-            actionsPanelHeight = self.panelTitleViewHeightConstraint.constant + (CGFloat(kActionsViewHeigth) * CGFloat(numberActions))
+            actionsPanelHeight = self.panelTitleViewHeightConstraint.constant + (CGFloat(kActionsViewHeigth) * CGFloat(numberActions)) + 8
         }
         
         if actionsPanelHeight > maxActionsPanelHeight {
