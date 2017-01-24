@@ -20,6 +20,7 @@ public class MGBottomSheet: UIViewController  {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var actionsPanelHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var panelTitleViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var collectionViewTopConstraint: NSLayoutConstraint!
     
     fileprivate var actions: Array<ActionSheet> = []
     fileprivate var tap = UITapGestureRecognizer()
@@ -96,6 +97,7 @@ public class MGBottomSheet: UIViewController  {
     
     fileprivate func hideTitlePanelView() {
         self.panelTitleViewHeightConstraint.constant = 0.0
+        self.collectionViewTopConstraint.constant = 8.0
         self.actionsPanelTitleView.isHidden = true
     }
     
@@ -112,7 +114,7 @@ public class MGBottomSheet: UIViewController  {
         self.actionsPanel.layer.add(animation, forKey: "transition")
     }
     
-    //MARK: Public Methods
+    //MARK: - Public Methods
     
     public func addAction(_ action: ActionSheet) {
         self.actions.append(action)
@@ -128,13 +130,14 @@ public class MGBottomSheet: UIViewController  {
     fileprivate func resizeViewForNumberOfActions(_ numberActions: Int) {
         var actionsPanelHeight:CGFloat = 0.0
         let maxActionsPanelHeight:CGFloat = (self.view.frame.size.height * 0.7)
+        let topBottomSpace = self.collectionViewTopConstraint.constant + 8
         
         if UI_USER_INTERFACE_IDIOM() == .pad {
             let numberLines:Float = ceilf(Float(numberActions) / 2)
-            actionsPanelHeight = self.panelTitleViewHeightConstraint.constant + (CGFloat(kActionsViewHeigth) * CGFloat(numberLines)) + 8
+            actionsPanelHeight = self.panelTitleViewHeightConstraint.constant + (CGFloat(kActionsViewHeigth) * CGFloat(numberLines)) + topBottomSpace
         }
         else {
-            actionsPanelHeight = self.panelTitleViewHeightConstraint.constant + (CGFloat(kActionsViewHeigth) * CGFloat(numberActions)) + 8
+            actionsPanelHeight = self.panelTitleViewHeightConstraint.constant + (CGFloat(kActionsViewHeigth) * CGFloat(numberActions)) + topBottomSpace
         }
         
         if actionsPanelHeight > maxActionsPanelHeight {

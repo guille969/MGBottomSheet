@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MGBottomSheet" customModule="MGBottomSheetController" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MGBottomSheet" customModule="MGBottomSheet" customModuleProvider="target">
             <connections>
                 <outlet property="actionsPanel" destination="0af-SO-tEE" id="fEO-rT-luD"/>
                 <outlet property="actionsPanelHeightConstraint" destination="dLa-P9-2Ih" id="Usc-dn-kCB"/>
                 <outlet property="actionsPanelTitleLabel" destination="9zA-Ns-Aza" id="yMi-O2-CaF"/>
                 <outlet property="actionsPanelTitleView" destination="oU7-Tn-v0B" id="pSz-16-EJP"/>
                 <outlet property="collectionView" destination="PlL-JE-Bmt" id="WGK-hU-vWW"/>
+                <outlet property="collectionViewTopConstraint" destination="bs6-F5-nBo" id="AzL-uK-a6w"/>
                 <outlet property="overlayView" destination="aFO-1E-jEc" id="ODi-AR-5XC"/>
                 <outlet property="panelTitleViewHeightConstraint" destination="XqP-AA-Iv4" id="tfy-YO-p3r"/>
                 <outlet property="view" destination="2zB-IL-M4S" id="RFt-Be-ljr"/>
