@@ -19,6 +19,6 @@ You will need the latest developer tools in order to build `MGBottomSheet`. Old 
 
 [CocoaPods](http://cocoapods.org) is the recommended way to add MGBottomSheet to your project.
 
-1. Add a pod entry for MGBottomSheet to your Podfile `pod 'MGBottomSheet'
+1. Add a pod entry for MGBottomSheet to your Podfile `pod 'MGBottomSheet'`
 2. Install the pod(s) by running `pod install`.
 3. Include MGBottomSheet wherever you need it with `@import MGBottomSheet` if your project is in Objective-C or `import MGBottomSheet` if your project is in Swift.
