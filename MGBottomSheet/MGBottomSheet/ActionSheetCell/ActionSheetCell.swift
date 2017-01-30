@@ -13,9 +13,38 @@ public class ActionSheetCell: UICollectionViewCell {
     @IBOutlet weak var actionImage: UIImageView!
     @IBOutlet weak var actionTitleLabel: UILabel!
     
+    /**
+     Implementation of the method awakeFromNib od UICollectionViewCell
+     
+     - Author:
+     Guillermo Garcia Rebolo
+     
+     - Version:
+     1.0.3
+     */
+    
     override public func awakeFromNib() {
         super.awakeFromNib()
     }
+    
+    /**
+     Methods for configure an action sheet cell
+     
+     - Author:
+     Guillermo Garcia Rebolo
+     
+     - returns
+     ActionSheetCell instance.
+     
+     - parameters:
+        - action: The action sheet.
+        - font: The font for the cell text.
+        - textColor: The color for the cell text.
+        - imageTint: The tint for the cell image.
+     
+     - Version:
+     1.0.3
+     */
     
     public func actionSheetCellWithAction(_ action: ActionSheet, font: UIFont, textColor: UIColor, imageTint: UIColor) {
         self.actionTitleLabel.font = font;

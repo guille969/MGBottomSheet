@@ -11,7 +11,7 @@ import UIKit
 let kActionSheetCellIdentifier = "ActionSheetCell"
 let kActionsViewHeigth = 48.0
 
-public class MGBottomSheet: UIViewController  {
+public class MGBottomSheet: UIViewController {
 
     @IBOutlet weak var overlayView: UIView!
     @IBOutlet weak var actionsPanel: UIView!
@@ -25,6 +25,17 @@ public class MGBottomSheet: UIViewController  {
     fileprivate var actions: Array<ActionSheet> = []
     fileprivate var tap = UITapGestureRecognizer()
     fileprivate var titlePanel: String?
+    
+    /**
+     Variable to set a custom appearance for the MGBottomSheet
+     
+     - Author:
+     Guillermo Garcia Rebolo
+     
+     - Version:
+     1.0.3
+     */
+    
     public var appearance: MGBottomSheetAppearanceAttributes?
     
     fileprivate static var bundle:Bundle {
@@ -32,6 +43,25 @@ public class MGBottomSheet: UIViewController  {
         let bundleURL = podBundle.url(forResource: "MGBottomSheet", withExtension: "bundle")
         return Bundle(url: bundleURL!)!
     }
+    
+    /**
+     Class methods for instantiate the MGBottomSheet
+     
+     - Author:
+     Guillermo Garcia Rebolo
+     
+     - returns
+     MGBottomSheet instance.
+     
+     - parameters:
+        - title: The main title of the bottom sheet.
+     
+     - Version:
+     1.0.3
+     
+     This method creates an instance for use the MGBottomSheet in your code and let you access
+     to its methods.
+     */
     
     public class func mgBottomSheetWithTitle(_ title: String?) -> MGBottomSheet {
         let view = MGBottomSheet(nibName: "MGBottomSheet", bundle: bundle)
@@ -44,16 +74,46 @@ public class MGBottomSheet: UIViewController  {
         return view
     }
     
+    /**
+     Override of the UIKit method viewDidLoad
+     
+     - Author:
+     Guillermo Garcia Rebolo
+     
+     - Version:
+     1.0.3
+     */
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.tap = UITapGestureRecognizer(target: self, action: #selector(dismissBottomSheet(_:)))
         self.overlayView.addGestureRecognizer(tap)
     }
     
+    /**
+     Override of the UIKit method viewWillAppear
+     
+     - Author:
+     Guillermo Garcia Rebolo
+     
+     - Version:
+     1.0.3
+     */
+    
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.configureView()
     }
+    
+    /**
+     Override of the UIKit method didReceiveMemoryWarning
+     
+     - Author:
+     Guillermo Garcia Rebolo
+     
+     - Version:
+     1.0.3
+     */
 
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -116,6 +176,19 @@ public class MGBottomSheet: UIViewController  {
     
     //MARK: - Public Methods
     
+    /**
+     Method for add an action to the MGBottomSheet
+     
+     - Author:
+     Guillermo Garcia Rebolo
+     
+     - parameters:
+     - action: ActionSheet action for display at the MGBottomSheet.
+     
+     - Version:
+     1.0.3
+     */
+    
     public func addAction(_ action: ActionSheet) {
         self.actions.append(action)
     }
@@ -153,13 +226,43 @@ public class MGBottomSheet: UIViewController  {
 
 extension MGBottomSheet: UICollectionViewDataSource {
     
+    /**
+     Implementation of method numberOfSections of UICollectionViewDataSource
+     
+     - Author:
+     Guillermo Garcia Rebolo
+     
+     - Version:
+     1.0.3
+     */
+    
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1;
     }
     
+    /**
+     Implementation of method collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int of UICollectionViewDataSource
+     
+     - Author:
+     Guillermo Garcia Rebolo
+     
+     - Version:
+     1.0.3
+     */
+    
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.actions.count
     }
+    
+    /**
+     Implementation of method collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell of UICollectionViewDataSource
+     
+     - Author:
+     Guillermo Garcia Rebolo
+     
+     - Version:
+     1.0.3
+     */
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kActionSheetCellIdentifier, for: indexPath)
@@ -174,7 +277,42 @@ extension MGBottomSheet: UICollectionViewDataSource {
 
 //MARK: - CollectionViewDelegate
 
+extension MGBottomSheet: UICollectionViewDelegate {
+    
+    /**
+     Implementation of method collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) of UICollectionViewDelegate
+     
+     - Author:
+     Guillermo Garcia Rebolo
+     
+     - Version:
+     1.0.3
+     */
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let completion = self.actions[indexPath.row].completion
+        
+        if let function = completion {
+            self.hideActionsPanel()
+            self.dismiss(animated: true, completion: {
+                function()
+            })
+        }
+        
+    }
+}
+
 extension MGBottomSheet: UICollectionViewDelegateFlowLayout {
+    
+    /**
+     Implementation of method collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize of UICollectionViewDelegateFlowLayout
+     
+     - Author:
+     Guillermo Garcia Rebolo
+     
+     - Version:
+     1.0.3
+     */
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if UI_USER_INTERFACE_IDIOM() == .pad {
@@ -182,19 +320,4 @@ extension MGBottomSheet: UICollectionViewDelegateFlowLayout {
         }
         return CGSize.init(width: self.actionsPanel.frame.size.width, height: 48.0)
     }
-    
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let completion = self.actions[indexPath.row].completion
-        
-        if let function = completion {
-            self.hideActionsPanel()
-            self.dismiss(animated: true, completion: { 
-                function()
-            })
-        }
-        
-    }
-    
-    
 }

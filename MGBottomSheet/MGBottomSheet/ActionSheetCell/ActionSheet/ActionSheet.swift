@@ -18,6 +18,24 @@ public class ActionSheet: NSObject {
     override init() {
     }
     
+    /**
+     Class methods for instantiate an ActionSheet
+     
+     - Author:
+     Guillermo Garcia Rebolo
+     
+     - returns
+     ActionSheet instance.
+     
+     - parameters:
+        - title: The main title of the action sheet.
+        - imageIcon: Image of the action sheet.
+        - completion: action for execute when the action sheet is selected.
+     
+     - Version:
+     1.0.3
+     */
+    
     public class func actionWithTitle(_ title: String, imageIcon: UIImage, completion: (() -> Void)? ) -> ActionSheet {
         
         let actionSheet = ActionSheet()
@@ -27,6 +45,16 @@ public class ActionSheet: NSObject {
         
         return  actionSheet
     }
+    
+    /**
+     Method for set disable a desired action of the MGBottomSheet
+     
+     - Author:
+     Guillermo Garcia Rebolo
+     
+     - Version:
+     1.0.3
+     */
     
     public func setActionDisabled() {
         self.disabled = true
