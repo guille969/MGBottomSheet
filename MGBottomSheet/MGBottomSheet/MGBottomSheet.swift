@@ -12,11 +12,6 @@ let kActionSheetCellIdentifier = "ActionSheetCell"
 let kActionsViewHeigth = 48.0
 
 public class MGBottomSheet: UIViewController {
-    
-    public enum MGBottomSheetNumColumns : CGFloat {
-        case oneColumn = 1
-        case twoColumns = 2
-    }
 
     @IBOutlet weak var overlayView: UIView!
     @IBOutlet weak var actionsPanel: UIView!
@@ -30,7 +25,7 @@ public class MGBottomSheet: UIViewController {
     fileprivate var actions: Array<ActionSheet> = []
     fileprivate var tap = UITapGestureRecognizer()
     fileprivate var titlePanel: String?
-    fileprivate var numberColumns : CGFloat = MGBottomSheetNumColumns.oneColumn.rawValue
+    public var numberColumns : Int = 2
     
     /**
      Variable to set a custom appearance for the MGBottomSheet
@@ -76,7 +71,7 @@ public class MGBottomSheet: UIViewController {
         view.appearance = MGBottomSheetAppearanceAttributes.configureDefaultTextStyle()
         view.modalPresentationStyle = .overCurrentContext
         view.modalTransitionStyle = .crossDissolve
-        view.numberColumns = MGBottomSheetNumColumns.twoColumns.rawValue
+        view.numberColumns = 2
         
         return view
     }
@@ -200,23 +195,6 @@ public class MGBottomSheet: UIViewController {
         self.actions.append(action)
     }
     
-    /**
-     Method for set the number of columns for iPad to the MGBottomSheet
-     
-     - Author:
-     Guillermo Garcia Rebolo
-     
-     - parameters:
-     - numberColumns: Number of columns for iPad for the MGBottomSheet.
-     
-     - Version:
-     1.0.4
-     */
-    
-    public func configureNumberColumns(_ numberColumns: MGBottomSheetNumColumns) {
-        self.numberColumns = numberColumns.rawValue
-    }
-    
     //MARK: - Private Methods
     
     fileprivate func registerCellsForCollectionView() {
@@ -229,7 +207,7 @@ public class MGBottomSheet: UIViewController {
         let topBottomSpace = self.collectionViewTopConstraint.constant + 8
         
         if UI_USER_INTERFACE_IDIOM() == .pad {
-            let numberLines:Float = ceilf(Float(numberActions) / 2)
+            let numberLines:Float = ceilf(Float(numberActions) / Float(numberColumns))
             actionsPanelHeight = self.panelTitleViewHeightConstraint.constant + (CGFloat(kActionsViewHeigth) * CGFloat(numberLines)) + topBottomSpace
         }
         else {
@@ -341,7 +319,7 @@ extension MGBottomSheet: UICollectionViewDelegateFlowLayout {
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if UI_USER_INTERFACE_IDIOM() == .pad {
-            return CGSize.init(width: self.actionsPanel.frame.size.width / numberColumns, height: 48.0)
+            return CGSize.init(width: self.actionsPanel.frame.size.width / CGFloat(numberColumns), height: 48.0)
         }
         return CGSize.init(width: self.actionsPanel.frame.size.width, height: 48.0)
     }
