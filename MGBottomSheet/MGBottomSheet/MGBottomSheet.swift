@@ -213,7 +213,7 @@ public class MGBottomSheet: UIViewController {
      1.0.4
      */
     
-    public func setNumberColumns(_ numberColumns: MGBottomSheetNumColumns) {
+    public func configureNumberColumns(_ numberColumns: MGBottomSheetNumColumns) {
         self.numberColumns = numberColumns.rawValue
     }
     
