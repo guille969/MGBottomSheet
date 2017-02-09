@@ -61,5 +61,22 @@ public class ActionSheet: NSObject {
     public func setActionDisabled() {
         self.disabled = true
     }
+    
+    /**
+     Method for set the image tint of the action for MGBottomSheet
+     
+     - Author:
+     Guillermo Garcia Rebolo
+     
+     - parameters:
+        - imageTint: The color for the image tint of the action.
+     
+     - Version:
+     1.0.3
+     */
+    
+    public func setActionImageColor(_ imageTint: UIColor) {
+        self.iconImageTint = imageTint
+    }
 
 }
