@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-@import MGBottonSheet
+@import MGBottomSheet;
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *bottomSheetButton;
@@ -32,6 +32,8 @@
 
 - (MGBottomSheet *)constructBottomSheet {
     MGBottomSheet *mgBottomSheet = [MGBottomSheet mgBottomSheetWithTitle:@"Actions"];
+    
+    mgBottomSheet.numberColumns = 2;
     
     ActionSheet *deleteAction = [ActionSheet actionWithTitle:@"Delete" imageIcon:[UIImage imageNamed:@"FavouriteFilled"] completion:^{
         NSLog(@"CallBack");
