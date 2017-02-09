@@ -12,6 +12,7 @@ public class ActionSheet: NSObject {
     
     var title = String()
     var iconImage = UIImage()
+    var iconImageTint = UIColor()
     var disabled = Bool()
     var completion: (() -> Void)?
     
@@ -41,6 +42,7 @@ public class ActionSheet: NSObject {
         let actionSheet = ActionSheet()
         actionSheet.title = title;
         actionSheet.iconImage = imageIcon.withRenderingMode(.alwaysTemplate)
+        actionSheet.iconImageTint = UIColor.clear
         actionSheet.completion = completion
         
         return  actionSheet

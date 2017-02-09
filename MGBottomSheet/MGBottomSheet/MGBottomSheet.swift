@@ -12,6 +12,11 @@ let kActionSheetCellIdentifier = "ActionSheetCell"
 let kActionsViewHeigth = 48.0
 
 public class MGBottomSheet: UIViewController {
+    
+    public enum MGBottomSheetNumColumns : CGFloat {
+        case oneColumn = 1
+        case twoColumns = 2
+    }
 
     @IBOutlet weak var overlayView: UIView!
     @IBOutlet weak var actionsPanel: UIView!
@@ -25,6 +30,7 @@ public class MGBottomSheet: UIViewController {
     fileprivate var actions: Array<ActionSheet> = []
     fileprivate var tap = UITapGestureRecognizer()
     fileprivate var titlePanel: String?
+    fileprivate var numberColumns : CGFloat = MGBottomSheetNumColumns.oneColumn.rawValue
     
     /**
      Variable to set a custom appearance for the MGBottomSheet
@@ -70,6 +76,7 @@ public class MGBottomSheet: UIViewController {
         view.appearance = MGBottomSheetAppearanceAttributes.configureDefaultTextStyle()
         view.modalPresentationStyle = .overCurrentContext
         view.modalTransitionStyle = .crossDissolve
+        view.numberColumns = MGBottomSheetNumColumns.twoColumns.rawValue
         
         return view
     }
@@ -193,6 +200,22 @@ public class MGBottomSheet: UIViewController {
         self.actions.append(action)
     }
     
+    /**
+     Method for set the number of columns for iPad to the MGBottomSheet
+     
+     - Author:
+     Guillermo Garcia Rebolo
+     
+     - parameters:
+     - numberColumns: Number of columns for iPad for the MGBottomSheet.
+     
+     - Version:
+     1.0.4
+     */
+    
+    public func setNumberColumns(_ numberColumns: MGBottomSheetNumColumns) {
+        self.numberColumns = numberColumns.rawValue
+    }
     
     //MARK: - Private Methods
     
@@ -302,6 +325,8 @@ extension MGBottomSheet: UICollectionViewDelegate {
     }
 }
 
+//MARK: - CollectionViewDelegateFlowLayout
+
 extension MGBottomSheet: UICollectionViewDelegateFlowLayout {
     
     /**
@@ -316,7 +341,7 @@ extension MGBottomSheet: UICollectionViewDelegateFlowLayout {
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if UI_USER_INTERFACE_IDIOM() == .pad {
-            return CGSize.init(width: self.actionsPanel.frame.size.width / 2, height: 48.0)
+            return CGSize.init(width: self.actionsPanel.frame.size.width / numberColumns, height: 48.0)
         }
         return CGSize.init(width: self.actionsPanel.frame.size.width, height: 48.0)
     }

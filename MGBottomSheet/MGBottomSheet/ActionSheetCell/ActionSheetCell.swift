@@ -55,7 +55,13 @@ public class ActionSheetCell: UICollectionViewCell {
         
         if (!action.disabled) {
             self.actionTitleLabel.textColor = textColor
-            self.actionImage.tintColor = imageTint
+            
+            if (action.iconImageTint != UIColor.clear) {
+                self.actionImage.tintColor = action.iconImageTint
+            }
+            else {
+                self.actionImage.tintColor = imageTint
+            }
             self.isUserInteractionEnabled = true;
         }
         else {
