@@ -1,8 +1,11 @@
 # MGBottomSheet
 
-[![CocoaPods compatible](https://img.shields.io/cocoapods/v/MGBottomSheet.svg?style=flat)](https://cocoapods.org/pods/MGBottomSheet) [![License: MIT](https://img.shields.io/cocoapods/l/MGBottomSheet.svg?style=flat)](http://opensource.org/licenses/MIT)
+[![CocoaPods compatible](https://img.shields.io/cocoapods/v/MGBottomSheet.svg?style=flat)](https://cocoapods.org/pods/MGBottomSheet) 
+[![License: MIT](https://img.shields.io/cocoapods/l/MGBottomSheet.svg?style=flat)](http://opensource.org/licenses/MIT)
+[![Swift Version](https://img.shields.io/badge/Swift-4.1-orange.svg?style=flat)](https://developer.apple.com/swift/) 
+[![Platform](https://img.shields.io/badge/platform-iOS-lightgrey.svg)](https://developer.apple.com/ios/)
 
-`MGBottomSheet` is an iOS drop-in class that displays a bottom sheet with some actions of your election, to do some actions over your project. The Bottom Shet is meant as a replacement for private `UIKit` `UIAlertController` with some additional features.
+`MGBottomSheet` is an iOS drop-in class that displays a bottom sheet with some actions of your election, to do some actions over your project. The Bottom Sheet is meant as a replacement for private `UIKit` `UIAlertController` with some additional features.
 
 ## Requirements
 
