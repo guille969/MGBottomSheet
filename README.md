@@ -1,5 +1,6 @@
 # MGBottomSheet
 
+[![Build Status](https://travis-ci.org/gygr969/MGBottomSheet.svg?branch=master)](https://travis-ci.org/gygr969/MGBottomSheet)
 [![CocoaPods compatible](https://img.shields.io/cocoapods/v/MGBottomSheet.svg?style=flat)](https://cocoapods.org/pods/MGBottomSheet) 
 [![License: MIT](https://img.shields.io/cocoapods/l/MGBottomSheet.svg?style=flat)](http://opensource.org/licenses/MIT)
 [![Swift Version](https://img.shields.io/badge/Swift-4.1-orange.svg?style=flat)](https://developer.apple.com/swift/) 
