@@ -35,12 +35,16 @@ public class ActionSheet {
     ///   - imageIcon: Image of the action sheet.
     ///   - completion: action for execute when the action sheet is selected.
     /// - Returns: ActionSheet instance
-    public class func actionWithTitle(_ title: String, imageIcon: UIImage, completion: MGCompletion? = nil) -> ActionSheet {
+    public class func actionWithTitle(_ title: String, imageIcon: UIImage?, completion: MGCompletion? = nil) -> ActionSheet {
         let actionSheet = ActionSheet()
         actionSheet.title = title;
-        actionSheet.iconImage = imageIcon.withRenderingMode(.alwaysTemplate)
         actionSheet.iconImageTint = UIColor.clear
         actionSheet.completion = completion
+        guard let icon: UIImage = imageIcon else {
+            actionSheet.iconImage = UIImage()
+            return actionSheet
+        }
+        actionSheet.iconImage = icon.withRenderingMode(.alwaysTemplate)
         
         return  actionSheet
     }
