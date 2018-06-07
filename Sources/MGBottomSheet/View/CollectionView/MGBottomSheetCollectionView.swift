@@ -48,7 +48,7 @@ class MGBottomSheetCollectionView: UICollectionView {
     }
     
     fileprivate func registerCells() {
-        self.register(UINib(nibName: "ActionSheetCell", bundle: Bundle.libraryBundle()), forCellWithReuseIdentifier: kActionSheetCellIdentifier)
+        self.register(ActionSheetCell.self, forCellWithReuseIdentifier: kActionSheetCellIdentifier)
     }
 
 }

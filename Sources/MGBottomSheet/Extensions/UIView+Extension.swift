@@ -112,4 +112,10 @@ extension UIView {
         parent.addConstraint(constraint)
         return constraint
     }
+    
+    func left(toRight view: UIView, fromView parent: UIView, constant: CGFloat = 0.0) -> NSLayoutConstraint {
+        let constraint: NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .left, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1, constant: constant)
+        parent.addConstraint(constraint)
+        return constraint
+    }
 }

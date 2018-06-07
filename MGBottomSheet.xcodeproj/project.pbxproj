@@ -15,7 +15,6 @@
 		7E70BC9920C80E4B0009AE33 /* MGBottomSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E70BC8B20C80E4A0009AE33 /* MGBottomSheet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E70BCAE20C80F270009AE33 /* ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E70BCA720C80F260009AE33 /* ActionSheet.swift */; };
 		7E70BCAF20C80F270009AE33 /* ActionSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E70BCA820C80F260009AE33 /* ActionSheetCell.swift */; };
-		7E70BCB020C80F270009AE33 /* ActionSheetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E70BCA920C80F260009AE33 /* ActionSheetCell.xib */; };
 		7E70BCB220C80F270009AE33 /* MGBottomSheetAppearenceAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E70BCAC20C80F260009AE33 /* MGBottomSheetAppearenceAttributes.swift */; };
 		7E70BCB320C80F270009AE33 /* MGBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E70BCAD20C80F270009AE33 /* MGBottomSheet.swift */; };
 		7E70BCB720C815F50009AE33 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E70BCB620C815F50009AE33 /* Bundle+Extension.swift */; };
@@ -47,7 +46,6 @@
 		7E70BC9820C80E4B0009AE33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E70BCA720C80F260009AE33 /* ActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSheet.swift; sourceTree = "<group>"; };
 		7E70BCA820C80F260009AE33 /* ActionSheetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSheetCell.swift; sourceTree = "<group>"; };
-		7E70BCA920C80F260009AE33 /* ActionSheetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionSheetCell.xib; sourceTree = "<group>"; };
 		7E70BCAC20C80F260009AE33 /* MGBottomSheetAppearenceAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGBottomSheetAppearenceAttributes.swift; sourceTree = "<group>"; };
 		7E70BCAD20C80F270009AE33 /* MGBottomSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGBottomSheet.swift; sourceTree = "<group>"; };
 		7E70BCB620C815F50009AE33 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
@@ -181,7 +179,6 @@
 			children = (
 				7E70BCA620C80F260009AE33 /* ActionSheet */,
 				7E70BCA820C80F260009AE33 /* ActionSheetCell.swift */,
-				7E70BCA920C80F260009AE33 /* ActionSheetCell.xib */,
 			);
 			path = ActionSheetCell;
 			sourceTree = "<group>";
@@ -313,7 +310,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E70BCB020C80F270009AE33 /* ActionSheetCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
