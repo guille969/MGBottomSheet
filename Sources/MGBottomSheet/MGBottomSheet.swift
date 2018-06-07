@@ -46,8 +46,7 @@ public class MGBottomSheet: MGBottomSheetBaseView {
     /// - Parameter title: The main title of the bottom sheet.
     /// - Returns: MGBottomSheet instance
     public class func mgBottomSheetWithTitle(_ title: String?) -> MGBottomSheet {
-        let view = MGBottomSheet(nibName: "MGBottomSheet", bundle: Bundle.libraryBundle())
-        
+        let view = MGBottomSheet()
         view.titlePanel = title
         view.attributes = .default
         view.modalTransitionStyle = .crossDissolve

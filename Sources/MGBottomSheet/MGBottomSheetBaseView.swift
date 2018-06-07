@@ -1,6 +1,6 @@
 //
 //  MGBottomSheetHandler.swift
-//  MGBottomSheet iOS
+//  MGBottomSheet
 //
 //  Created by Guillermo García Rebolo on 6/6/18.
 //  Copyright © 2018 Guillermo García Rebolo. All rights reserved.
@@ -13,14 +13,14 @@ let kActionsViewHeigth = 48.0
 
 public class MGBottomSheetBaseView: UIViewController {
     
-    @IBOutlet weak var overlayView: UIView!
-    @IBOutlet weak var actionsPanel: UIView!
-    @IBOutlet weak var actionsPanelTitleView: UIView!
-    @IBOutlet weak var actionsPanelTitleLabel: UILabel!
-    @IBOutlet weak var collectionView: MGBottomSheetCollectionView!
-    @IBOutlet weak var actionsPanelHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var panelTitleViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var collectionViewTopConstraint: NSLayoutConstraint!
+    var overlayView: UIView!
+    var actionsPanel: MGActionPanelView!
+    var actionsPanelTitleView: UIView!
+    var actionsPanelTitleLabel: UILabel!
+    var collectionView: MGBottomSheetCollectionView!
+    var actionsPanelHeightConstraint: NSLayoutConstraint!
+    var panelTitleViewHeightConstraint: NSLayoutConstraint!
+    var collectionViewTopConstraint: NSLayoutConstraint!
     
     internal var actions: [ActionSheet] = []
     internal var tap: UITapGestureRecognizer?
@@ -31,7 +31,7 @@ public class MGBottomSheetBaseView: UIViewController {
     /// Override of the UIKit method viewDidLoad
     override public func viewDidLoad() {
         super.viewDidLoad()
-        self.configureOverlay()
+        self.configureBaseView()
     }
     
     /// Override of the UIKit method viewWillAppear
@@ -55,12 +55,6 @@ public class MGBottomSheetBaseView: UIViewController {
         self.collectionView.collectionDelegate = self
         self.collectionView.configure(withActions: self.actions, withAppearance: self.attributes)
         self.showActionsPanel()
-    }
-    
-    private func configureOverlay() {
-        self.tap = UITapGestureRecognizer(target: self, action: #selector(dismissBottomSheet(_:)))
-        guard let tap: UITapGestureRecognizer = self.tap else { return }
-        self.overlayView.addGestureRecognizer(tap)
     }
     
     private func configureLabels() {
