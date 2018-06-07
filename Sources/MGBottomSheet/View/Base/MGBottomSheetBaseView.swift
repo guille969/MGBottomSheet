@@ -8,18 +8,12 @@
 
 import UIKit
 
-let kActionSheetCellIdentifier = "ActionSheetCell"
-let kActionsViewHeigth = 48.0
-
 public class MGBottomSheetBaseView: UIViewController {
     
     var overlayView: MGOverlayView!
     var actionsPanel: MGActionPanelView!
     
     internal var actions: [ActionSheet] = []
-    internal var tap: UITapGestureRecognizer?
-    internal var titlePanel: String?
-    internal var columns: Int = 2
     internal var attributes: MGBottomSheetAppearanceAttributes = .default
     
     /// Override of the UIKit method viewDidLoad
@@ -43,14 +37,8 @@ public class MGBottomSheetBaseView: UIViewController {
     
     //MARK: - Layout
     
-    private func configureBaseView() {
-        self.overlayView = MGOverlayView(withView: self.view, andDelegate: self)
-        self.actionsPanel = MGActionPanelView(withView: self.view, andDelegate: self)
-    }
-    
     private func configureView() {
-        self.actionsPanel.configureTitle(withTitle: self.titlePanel, actions: self.actions, appearance: self.attributes, andDelegate: self)
-        self.actionsPanel.configureView(forNumberOfAction: self.actions.count, columns: self.columns, andView: self.view)
+        self.actionsPanel.configureActions(self.actions, withAppearance: self.attributes, andView: self.view)
         self.actionsPanel.show()
     }
     
@@ -59,28 +47,24 @@ public class MGBottomSheetBaseView: UIViewController {
     internal func add(action: ActionSheet) {
         self.actions.append(action)
     }
-}
-
-//MARK: - MGBottomSheetCollectionViewDelegate
-
-extension MGBottomSheetBaseView: MGBottomSheetCollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItem item: ActionSheet) {
-        guard let completion: MGCompletion = item.completion else { return }
-        self.actionsPanel.hide()
-        self.dismiss(animated: true) {
-            completion()
-        }
-    }
     
-    func collectionView(_ collectionView: UICollectionView, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
-        guard UI_USER_INTERFACE_IDIOM() == .pad else { return CGSize(width: self.actionsPanel.frame.size.width, height: 48.0) }
-        return CGSize(width: self.actionsPanel.frame.size.width / CGFloat(self.columns), height: 48.0)
+    internal func configureBaseView() {
+        self.overlayView = MGOverlayView(withView: self.view, andDelegate: self)
+        self.actionsPanel = MGActionPanelView(withView: self.view, andDelegate: self)
     }
 }
 
 //MARK: - MGActionPanelViewDelegate
 
 extension MGBottomSheetBaseView: MGActionPanelViewDelegate {
+    func panelDidSelectItem(_ action: ActionSheet) {
+        guard let completion: MGCompletion = action.completion else { return }
+        self.actionsPanel.hide()
+        self.dismiss(animated: true) {
+            completion()
+        }
+    }
+    
     func panelWillShow() {
         self.overlayView.show(withDelay: 0.2)
     }

@@ -12,8 +12,8 @@ public class MGBottomSheet: MGBottomSheetBaseView {
     
     /// Number of sheet columns
     public var numberColumns: Int {
-        get { return self.columns }
-        set { self.columns = newValue }
+        get { return self.actionsPanel.columns }
+        set { self.actionsPanel.columns = newValue }
     }
     
     /// Custom appearance for the MGBottomSheet
@@ -47,11 +47,12 @@ public class MGBottomSheet: MGBottomSheetBaseView {
     /// - Returns: MGBottomSheet instance
     public class func mgBottomSheetWithTitle(_ title: String?) -> MGBottomSheet {
         let view = MGBottomSheet()
-        view.titlePanel = title
+        view.configureBaseView()
         view.attributes = .default
+        view.actionsPanel.columns = 2
+        view.actionsPanel.configureTitle(title, withAppearance: view.attributes)
         view.modalTransitionStyle = .crossDissolve
         view.modalPresentationStyle = .overCurrentContext
-        view.columns = 2
         
         return view
     }
