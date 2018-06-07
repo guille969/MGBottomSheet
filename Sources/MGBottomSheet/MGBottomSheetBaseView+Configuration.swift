@@ -9,22 +9,11 @@
 extension MGBottomSheetBaseView {
     
     func configureBaseView() {
-        self.enableSafeArea()
         self.configureOverlay()
         self.configureActionsPanel()
         self.configurePatientTitleView()
         self.configureCollectionView()
         self.configureTitleLabel()
-    }
-    
-    private func enableSafeArea() {
-        guard #available(iOS 11, *) else { return }
-        let guide: UILayoutGuide = self.view.safeAreaLayoutGuide
-        self.view.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
-        self.view.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
-        self.view.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
-        self.view.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
-        self.view.layoutIfNeeded()
     }
     
     private func configureOverlay() {
@@ -38,6 +27,7 @@ extension MGBottomSheetBaseView {
     
     private func configureActionsPanel() {
         self.actionsPanel = MGActionPanelView()
+        self.actionsPanel.backgroundColor = .white
         self.actionsPanel.configure(withParentView: self.view)
         self.actionsPanelHeightConstraint = self.actionsPanel.height(constant: 165.0)
     }

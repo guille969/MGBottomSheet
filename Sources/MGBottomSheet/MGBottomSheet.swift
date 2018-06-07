@@ -50,6 +50,7 @@ public class MGBottomSheet: MGBottomSheetBaseView {
         view.titlePanel = title
         view.attributes = .default
         view.modalTransitionStyle = .crossDissolve
+        view.modalPresentationStyle = .overCurrentContext
         view.columns = 2
         
         return view

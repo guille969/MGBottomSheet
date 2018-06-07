@@ -30,10 +30,11 @@ class MGActionPanelView: UIView {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
+        guard let width: NSLayoutConstraint = self.widthConstraint else { return }
         
         if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
-            self.widthConstraint.isActive = true
+            width.isActive = true
         }
-        else { self.widthConstraint.isActive = false }
+        else { width.isActive = false }
     }
 }

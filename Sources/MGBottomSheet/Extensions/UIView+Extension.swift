@@ -33,30 +33,50 @@ extension UIView {
     }
     
     func top(withView view: UIView, constant: CGFloat = 0.0) -> NSLayoutConstraint {
-        if #available(iOS 11, *) {
-            let guide = view.safeAreaLayoutGuide
+        guard #available(iOS 11, *) else {
+            let constraint: NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: constant)
+            view.addConstraint(constraint)
+            return constraint
         }
-        
-        let constraint: NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: constant)
-        view.addConstraint(constraint)
+        let guide = view.safeAreaLayoutGuide
+        let constraint: NSLayoutConstraint = self.topAnchor.constraint(equalTo: guide.topAnchor, constant: constant)
+        constraint.isActive = true
         return constraint
     }
     
     func bottom(withView view: UIView, constant: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint: NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: constant)
-        view.addConstraint(constraint)
+        guard #available(iOS 11, *) else {
+            let constraint: NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: constant)
+            view.addConstraint(constraint)
+            return constraint
+        }
+        let guide = view.safeAreaLayoutGuide
+        let constraint: NSLayoutConstraint = self.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: constant)
+        constraint.isActive = true
         return constraint
     }
     
     func leading(withView view: UIView, constant: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint: NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1.0, constant: constant)
-        view.addConstraint(constraint)
+        guard #available(iOS 11, *) else {
+            let constraint: NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1.0, constant: constant)
+            view.addConstraint(constraint)
+            return constraint
+        }
+        let guide = view.safeAreaLayoutGuide
+        let constraint: NSLayoutConstraint = self.leftAnchor.constraint(equalTo: guide.leftAnchor, constant: constant)
+        constraint.isActive = true
         return constraint
     }
     
     func trailing(withView view: UIView, constant: CGFloat = 0.0) -> NSLayoutConstraint {
-        let constraint: NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1.0, constant: constant)
-        view.addConstraint(constraint)
+        guard #available(iOS 11, *) else {
+            let constraint: NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1.0, constant: constant)
+            view.addConstraint(constraint)
+            return constraint
+        }
+        let guide = view.safeAreaLayoutGuide
+        let constraint: NSLayoutConstraint = self.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: constant)
+        constraint.isActive = true
         return constraint
     }
     
