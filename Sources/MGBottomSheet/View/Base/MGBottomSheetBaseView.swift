@@ -13,7 +13,7 @@ let kActionsViewHeigth = 48.0
 
 public class MGBottomSheetBaseView: UIViewController {
     
-    var overlayView: UIView!
+    var overlayView: MGOverlayView!
     var actionsPanel: MGActionPanelView!
     var actionsPanelTitleView: UIView!
     var actionsPanelTitleLabel: UILabel!
@@ -71,11 +71,13 @@ public class MGBottomSheetBaseView: UIViewController {
     private func showActionsPanel() {
         self.actionsPanel.upDownAnimation(withDirection: 0)
         self.actionsPanel.isHidden = false
+        self.overlayView.show(withDelay: 0.2)
     }
     
     private func hideActionsPanel() {
         self.actionsPanel.upDownAnimation(withDirection: 1)
         self.actionsPanel.isHidden = true
+        self.overlayView.hide(withDelay: 0.2)
     }
     
     private func hideTitlePanelView() {

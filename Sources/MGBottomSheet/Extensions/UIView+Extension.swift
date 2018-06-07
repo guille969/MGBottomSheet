@@ -23,17 +23,8 @@ extension UIView {
         self.layer.add(animation, forKey: "transition")
     }
     
-    func fillView(_ parentView: UIView) {
-        parentView.addSubview(self)
-        self.translatesAutoresizingMaskIntoConstraints = false
-        _ = self.top(withView: parentView)
-        _ = self.bottom(withView: parentView)
-        _ = self.leading(withView: parentView)
-        _ = self.trailing(withView: parentView)
-    }
-    
-    func top(withView view: UIView, constant: CGFloat = 0.0) -> NSLayoutConstraint {
-        guard #available(iOS 11, *) else {
+    func top(withView view: UIView, constant: CGFloat = 0.0, toSafeArea safeArea: Bool = true) -> NSLayoutConstraint {
+        guard #available(iOS 11, *), safeArea else {
             let constraint: NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: constant)
             view.addConstraint(constraint)
             return constraint
@@ -44,8 +35,8 @@ extension UIView {
         return constraint
     }
     
-    func bottom(withView view: UIView, constant: CGFloat = 0.0) -> NSLayoutConstraint {
-        guard #available(iOS 11, *) else {
+    func bottom(withView view: UIView, constant: CGFloat = 0.0, toSafeArea safeArea: Bool = true) -> NSLayoutConstraint {
+        guard #available(iOS 11, *), safeArea else {
             let constraint: NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: constant)
             view.addConstraint(constraint)
             return constraint
@@ -56,8 +47,8 @@ extension UIView {
         return constraint
     }
     
-    func leading(withView view: UIView, constant: CGFloat = 0.0) -> NSLayoutConstraint {
-        guard #available(iOS 11, *) else {
+    func leading(withView view: UIView, constant: CGFloat = 0.0, toSafeArea safeArea: Bool = true) -> NSLayoutConstraint {
+        guard #available(iOS 11, *), safeArea else {
             let constraint: NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .left, relatedBy: .equal, toItem: view, attribute: .left, multiplier: 1.0, constant: constant)
             view.addConstraint(constraint)
             return constraint
@@ -68,8 +59,8 @@ extension UIView {
         return constraint
     }
     
-    func trailing(withView view: UIView, constant: CGFloat = 0.0) -> NSLayoutConstraint {
-        guard #available(iOS 11, *) else {
+    func trailing(withView view: UIView, constant: CGFloat = 0.0, toSafeArea safeArea: Bool = true) -> NSLayoutConstraint {
+        guard #available(iOS 11, *), safeArea else {
             let constraint: NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .right, relatedBy: .equal, toItem: view, attribute: .right, multiplier: 1.0, constant: constant)
             view.addConstraint(constraint)
             return constraint

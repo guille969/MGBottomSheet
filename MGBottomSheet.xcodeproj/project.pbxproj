@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7E6D229120C95BF300708621 /* MGBottomSheetBaseView+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D229020C95BF300708621 /* MGBottomSheetBaseView+Configuration.swift */; };
-		7E6D229320C964A900708621 /* MGActionPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D229220C964A900708621 /* MGActionPanelView.swift */; };
+		7E6D229A20C98AD100708621 /* MGOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D229920C98AD100708621 /* MGOverlayView.swift */; };
+		7E6D229C20C98B0300708621 /* MGActionPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D229B20C98B0300708621 /* MGActionPanelView.swift */; };
 		7E70BC9220C80E4B0009AE33 /* MGBottomSheet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E70BC8920C80E4A0009AE33 /* MGBottomSheet.framework */; };
 		7E70BC9720C80E4B0009AE33 /* MGBottomSheetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E70BC9620C80E4B0009AE33 /* MGBottomSheetTests.swift */; };
 		7E70BC9920C80E4B0009AE33 /* MGBottomSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E70BC8B20C80E4A0009AE33 /* MGBottomSheet.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -36,7 +37,8 @@
 
 /* Begin PBXFileReference section */
 		7E6D229020C95BF300708621 /* MGBottomSheetBaseView+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MGBottomSheetBaseView+Configuration.swift"; sourceTree = "<group>"; };
-		7E6D229220C964A900708621 /* MGActionPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MGActionPanelView.swift; path = Sources/MGBottomSheet/MGActionPanelView.swift; sourceTree = SOURCE_ROOT; };
+		7E6D229920C98AD100708621 /* MGOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGOverlayView.swift; sourceTree = "<group>"; };
+		7E6D229B20C98B0300708621 /* MGActionPanelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGActionPanelView.swift; sourceTree = "<group>"; };
 		7E70BC8920C80E4A0009AE33 /* MGBottomSheet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MGBottomSheet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E70BC8B20C80E4A0009AE33 /* MGBottomSheet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGBottomSheet.h; sourceTree = "<group>"; };
 		7E70BC8C20C80E4A0009AE33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -74,6 +76,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E6D229420C9890000708621 /* ActionPanel */ = {
+			isa = PBXGroup;
+			children = (
+				7E6D229B20C98B0300708621 /* MGActionPanelView.swift */,
+			);
+			path = ActionPanel;
+			sourceTree = "<group>";
+		};
+		7E6D229520C9890D00708621 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				7E70BCBA20C8196A0009AE33 /* MGBottomSheetBaseView.swift */,
+				7E6D229020C95BF300708621 /* MGBottomSheetBaseView+Configuration.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		7E6D229720C98AA500708621 /* Overlay */ = {
+			isa = PBXGroup;
+			children = (
+				7E6D229920C98AD100708621 /* MGOverlayView.swift */,
+			);
+			path = Overlay;
+			sourceTree = "<group>";
+		};
+		7E6D229820C98AAF00708621 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7E6D229420C9890000708621 /* ActionPanel */,
+				7E6D229520C9890D00708621 /* Base */,
+				7E70BCBE20C8328A0009AE33 /* CollectionView */,
+				7E6D229720C98AA500708621 /* Overlay */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		7E70BC6F20C80E0E0009AE33 = {
 			isa = PBXGroup;
 			children = (
@@ -130,12 +168,9 @@
 		7E70BCA420C80EF80009AE33 /* MGBottomSheet */ = {
 			isa = PBXGroup;
 			children = (
-				7E70BCB520C815D90009AE33 /* Extensions */,
-				7E70BCBE20C8328A0009AE33 /* CollectionView */,
 				7E70BCAB20C80F260009AE33 /* AppearanceAttributes */,
-				7E6D229220C964A900708621 /* MGActionPanelView.swift */,
-				7E70BCBA20C8196A0009AE33 /* MGBottomSheetBaseView.swift */,
-				7E6D229020C95BF300708621 /* MGBottomSheetBaseView+Configuration.swift */,
+				7E70BCB520C815D90009AE33 /* Extensions */,
+				7E6D229820C98AAF00708621 /* View */,
 				7E70BCAD20C80F270009AE33 /* MGBottomSheet.swift */,
 			);
 			path = MGBottomSheet;
@@ -296,10 +331,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E6D229320C964A900708621 /* MGActionPanelView.swift in Sources */,
 				7E70BCB920C817C40009AE33 /* UIView+Extension.swift in Sources */,
 				7E70BCB320C80F270009AE33 /* MGBottomSheet.swift in Sources */,
 				7E70BCBB20C8196A0009AE33 /* MGBottomSheetBaseView.swift in Sources */,
+				7E6D229C20C98B0300708621 /* MGActionPanelView.swift in Sources */,
 				7E70BCB720C815F50009AE33 /* Bundle+Extension.swift in Sources */,
 				7E70BCAE20C80F270009AE33 /* ActionSheet.swift in Sources */,
 				7E70BCAF20C80F270009AE33 /* ActionSheetCell.swift in Sources */,
@@ -307,6 +342,7 @@
 				7E70BCC220C832EC0009AE33 /* MGBottomSheetCollectionViewIO.swift in Sources */,
 				7E70BCC020C832BB0009AE33 /* MGBottomSheetCollectionView.swift in Sources */,
 				7E6D229120C95BF300708621 /* MGBottomSheetBaseView+Configuration.swift in Sources */,
+				7E6D229A20C98AD100708621 /* MGOverlayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,9 +17,8 @@ extension MGBottomSheetBaseView {
     }
     
     private func configureOverlay() {
-        self.overlayView = UIView()
-        self.overlayView.backgroundColor = UIColor(red:0.24, green:0.31, blue:0.33, alpha:0.6)
-        self.overlayView.fillView(self.view)
+        self.overlayView = MGOverlayView()
+        self.overlayView.configureView(withView: self.view)
         self.tap = UITapGestureRecognizer(target: self, action: #selector(dismissBottomSheet(_:)))
         guard let tap: UITapGestureRecognizer = self.tap else { return }
         self.overlayView.addGestureRecognizer(tap)
