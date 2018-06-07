@@ -11,15 +11,19 @@ import UIKit
 protocol MGActionPanelViewDelegate: class {
     func panelWillShow()
     func panelWillHide()
+    func panelDidSelectItem(_ action: ActionSheet)
 }
+
+let kActionsViewHeigth = 48.0
 
 class MGActionPanelView: UIView {
     
+    public var actionsPanelTitleView: MGPanelTitleView!
+    public var collectionView: MGBottomSheetCollectionView!
     public var widthConstraint: NSLayoutConstraint!
     public var heightConstraint: NSLayoutConstraint!
     
-    public var actionsPanelTitleView: MGPanelTitleView!
-    public var collectionView: MGBottomSheetCollectionView!
+    public var columns: Int = 2
     
     private weak var delegate: MGActionPanelViewDelegate?
     
@@ -35,14 +39,13 @@ class MGActionPanelView: UIView {
     
     //MARK: - Public Methods
     
-    public func configureTitle(withTitle title: String?, actions: [ActionSheet], appearance: MGBottomSheetAppearanceAttributes, andDelegate delegate: MGBottomSheetCollectionViewDelegate) {
+    public func configureTitle(_ title: String?, withAppearance appearance: MGBottomSheetAppearanceAttributes) {
         self.actionsPanelTitleView.configureTitle(title, withAppearance: appearance)
-        self.collectionView.collectionDelegate = delegate
-        self.collectionView.configure(withActions: actions, withAppearance: appearance)
     }
     
-    public func configureView(forNumberOfAction numberActions: Int, columns: Int, andView parent: UIView) {
-        self.resize(forNumberOfAction: numberActions, columns: columns, andView: parent)
+    public func configureActions(_ actions: [ActionSheet], withAppearance appearance: MGBottomSheetAppearanceAttributes, andView parent: UIView) {
+        self.collectionView.configure(withActions: actions, withAppearance: appearance)
+        self.resize(forNumberOfAction: actions.count, columns: self.columns, andView: parent)
     }
     
     public func show() {
@@ -79,6 +82,7 @@ class MGActionPanelView: UIView {
     private func configureSubViews() {
         self.actionsPanelTitleView = MGPanelTitleView(withParentView: self, andDelegate: self)
         self.collectionView = MGBottomSheetCollectionView(withView: self, andSibilig: self.actionsPanelTitleView)
+        self.collectionView.collectionDelegate = self
     }
     
     private func resize(forNumberOfAction numberActions: Int, columns: Int, andView parent: UIView) {
@@ -118,5 +122,16 @@ class MGActionPanelView: UIView {
 extension MGActionPanelView: MGPanelTitleViewDelegate {
     func titleDidHide() {
         self.collectionView.topConstraint.constant = 8.0
+    }
+}
+
+extension MGActionPanelView: MGBottomSheetCollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItem item: ActionSheet) {
+        self.delegate?.panelDidSelectItem(item)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+        guard UI_USER_INTERFACE_IDIOM() == .pad else { return CGSize(width: self.frame.size.width, height: 48.0) }
+        return CGSize(width: self.frame.size.width / CGFloat(self.columns), height: 48.0)
     }
 }

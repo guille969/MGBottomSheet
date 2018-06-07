@@ -8,6 +8,8 @@
 
 import UIKit
 
+let kActionSheetCellIdentifier = "ActionSheetCell"
+
 class MGBottomSheetCollectionView: UICollectionView {
     
     public weak var collectionDelegate: MGBottomSheetCollectionViewDelegate?
