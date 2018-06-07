@@ -23,6 +23,9 @@ class MGActionPanelView: UIView {
     public var widthConstraint: NSLayoutConstraint!
     public var heightConstraint: NSLayoutConstraint!
     
+    private var leadingConstraint: NSLayoutConstraint!
+    private var trailingConstraint: NSLayoutConstraint!
+    
     public var columns: Int = 2
     
     private weak var delegate: MGActionPanelViewDelegate?
@@ -64,19 +67,33 @@ class MGActionPanelView: UIView {
     
     private func configure(withParentView view: UIView) {
         self.backgroundColor = .white
+        self.configureConstraints(withParentView: view)
+        self.configureSizeClasses()
+        self.configureSubViews()
+    }
+    
+    private func configureConstraints(withParentView view: UIView) {
         self.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(self)
-        _ = self.leading(withView: view)
-        _ = self.trailing(withView: view)
+        self.leadingConstraint = self.leading(withView: view)
+        self.trailingConstraint = self.trailing(withView: view)
         _ = self.bottom(withView: view)
         _ = self.centerX(withView: view)
         self.heightConstraint = self.height(constant: 165.0)
         self.widthConstraint = self.width(constant: 512.0)
-        self.widthConstraint.isActive = false
+    }
+    
+    private func configureSizeClasses() {
         if self.traitCollection.horizontalSizeClass == .regular && self.traitCollection.verticalSizeClass == .regular {
             self.widthConstraint.isActive = true
+            self.leadingConstraint.isActive = false
+            self.trailingConstraint.isActive = false
         }
-        self.configureSubViews()
+        else {
+            self.widthConstraint.isActive = false
+            self.leadingConstraint.isActive = true
+            self.trailingConstraint.isActive = true
+        }
     }
     
     private func configureSubViews() {
@@ -108,12 +125,18 @@ class MGActionPanelView: UIView {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        guard let width: NSLayoutConstraint = self.widthConstraint else { return }
+        guard let width: NSLayoutConstraint = self.widthConstraint, let leading: NSLayoutConstraint = self.leadingConstraint, let trailing: NSLayoutConstraint = self.trailingConstraint else { return }
         
         if traitCollection.horizontalSizeClass == .regular && traitCollection.verticalSizeClass == .regular {
             width.isActive = true
+            leading.isActive = false
+            trailing.isActive = false
         }
-        else { width.isActive = false }
+        else {
+            width.isActive = false
+            leading.isActive = true
+            trailing.isActive = true
+        }
     }
 }
 
