@@ -11,22 +11,34 @@ import UIKit
 class MGBottomSheetCollectionView: UICollectionView {
     
     public weak var collectionDelegate: MGBottomSheetCollectionViewDelegate?
+    var topConstraint: NSLayoutConstraint!
     private var actions: [ActionSheet] = []
     private var attributes: MGBottomSheetAppearanceAttributes!
     
-    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(frame: frame, collectionViewLayout: layout)
-        self.configureView()
+    init(withView parent: UIView, andSibilig sibiling: UIView) {
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        super.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100), collectionViewLayout: layout)
+        self.configureView(withView: parent, andSibilig: sibiling)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.configureView()
     }
     
     //MARK: - Layout
     
-    private func configureView() {
+    private func configureView(withView parent: UIView, andSibilig sibiling: UIView) {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.backgroundColor = .white
+        parent.addSubview(self)
+        _ = self.leading(withView: parent)
+        _ = self.trailing(withView: parent)
+        _ = self.bottom(withView: parent)
+        self.topConstraint = self.top(toBottom: sibiling, fromView: parent)
+        self.configureCollection()
+    }
+    
+    private func configureCollection() {
         self.registerCells()
         self.backgroundColor = .white
         self.delegate = self
