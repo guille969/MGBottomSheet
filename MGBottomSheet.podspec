@@ -14,7 +14,4 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '9.0'
   s.framework = 'UIKit'
   s.source_files = 'Sources/**/*.{swift}'
-  s.resource_bundles = {
-    'MGBottomSheet' => ['Sources/**/*.{storyboard,xib}']
-  }
 end
