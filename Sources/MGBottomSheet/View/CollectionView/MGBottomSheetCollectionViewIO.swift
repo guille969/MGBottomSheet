@@ -1,6 +1,6 @@
 //
 //  MGBottomSheetCollectionViewIO.swift
-//  MGBottomSheet iOS
+//  MGBottomSheet
 //
 //  Created by Guillermo García Rebolo on 6/6/18.
 //  Copyright © 2018 Guillermo García Rebolo. All rights reserved.
